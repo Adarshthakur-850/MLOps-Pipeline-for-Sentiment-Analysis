@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header & Top bar -->
+        <header class="top-bar">
+            <div class="logo">MLOps Demo</div>
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode">
+                <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+        </header>
+
+        <!-- Metrics Panel (Bonus) -->
+        <div class="metrics-panel">
+            <div class="metric-card">
+                <div class="metric-label">System Status</div>
+                <div class="metric-value status-active">
+                    <span class="status-dot"></span> Active
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Total Requests</div>
+                <div class="metric-value" id="request-count">1,204</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Avg Latency</div>
+                <div class="metric-value">45ms</div>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <!-- Central Card -->
+            <div class="prediction-card">
+                <div class="card-header">
+                    <h1>Sentiment Analysis Dashboard</h1>
+                    <p class="subtitle">MLOps Pipeline Demo with Monitoring</p>
+                </div>
+                
+                <div class="input-section">
+                    <label for="sentiment-text" class="sr-only">Enter text to analyze</label>
+                    <textarea id="sentiment-text" placeholder="Type or paste a sentence here to analyze its sentiment... (e.g., 'I absolutely loved the new update, it works perfectly!')"></textarea>
+                    <button id="analyze-btn" class="primary-btn">
+                        <span>Analyze Sentiment</span>
+                        <div class="spinner hidden" id="loading-spinner"></div>
+                    </button>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error-message" class="error-container hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span id="error-text">API failure. Please try again.</span>
+                </div>
+
+                <!-- Result Section -->
+                <div id="result-section" class="result-container hidden">
+                    <div class="result-box">
+                        <div class="result-label">Sentiment View</div>
+                        <div class="sentiment-badge" id="sentiment-badge">Neutral</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-label">Polarity Score</div>
+                        <div class="polarity-score" id="polarity-score">0.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow Section -->
+            <div class="workflow-section">
+                <h2>System Workflow</h2>
+                <div class="workflow-diagram">
+                    <div class="node user-node">User</div>
+                    <div class="arrow">→</div>
+                    <div class="node api-node">FastAPI</div>
+                    <div class="arrow">→</div>
+                    <div class="node ml-node">ML Model</div>
+                    <div class="arrow">→</div>
+                    <div class="node monitoring-node">Prometheus</div>
+                    <div class="arrow">→</div>
+                    <div class="node viz-node">Grafana</div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by FastAPI, Kubernetes, Prometheus, and Grafana</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+vaderSentiment
+prometheus-client
+pydantic
+jinja2
